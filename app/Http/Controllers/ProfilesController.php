@@ -24,14 +24,14 @@ class ProfilesController extends Controller
             });
 
         $followersCount =  Cache::remember(
-            'count.posts.' . $user->id,
+            'count.followers.' . $user->id,
             now()->addSeconds(30),
             function () use ($user) {
-                $user->profile->followers->count();
+                return $user->profile->followers->count();
             });
 
         $followingCount =  Cache::remember(
-            'count.posts.' . $user->id,
+            'count.following.' . $user->id,
             now()->addSeconds(30),
             function () use ($user) {
                 return $user->following->count();
@@ -98,4 +98,5 @@ class ProfilesController extends Controller
 
         return redirect("/profile/{$user->id}");
     }
+
 }

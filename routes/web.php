@@ -23,6 +23,8 @@ Route::get('/email', function() {
    return new \App\Mail\NewUserWelcomeMail();
 });
 
+Route::get('/welcome', 'HomeController@welcome');
+
 Route::post('follow/{user}', 'FollowsController@store');
 
 Route::get('/', 'PostsController@index');
